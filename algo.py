@@ -4,7 +4,7 @@ ops = {
     '*': {'precedence': 2,'op': lambda x,y: x * y},
     '/': {'precedence': 2,'op': lambda x,y: x / y},
     '+': {'precedence': 1,'op': lambda x,y: x + y},
-    '-': {'precedence': 1,'op': lambda x,y: x -  y},
+    '-': {'precedence': 1,'op': lambda x,y: x - y},
     '(': {'precedence': 0},
 }
 
@@ -64,6 +64,7 @@ def algo(expression, debug = False):
             
         # If it's an operator
         elif token in ops:
+            
             # While there's an operator on the top of the operator stack with greater precedence
             while len(ops_stack) > 0 and ops[ops_stack[-1]]['precedence'] >= ops[token]['precedence']:
                 # Pop operators from the operator stack onto the output stack
