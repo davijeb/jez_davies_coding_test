@@ -1,5 +1,3 @@
-import unittest
-
 ops = {
     '*': {'precedence': 2,'op': lambda x,y: x * y},
     '/': {'precedence': 2,'op': lambda x,y: x / y},

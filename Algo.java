@@ -96,6 +96,7 @@ public class Algo {
      * @return the evaluated calculation.
      */
     public Integer algo(final String expression) {
+
         for(String token : expression.split(" ")) {
             if(token.equals("(")) {
                 ops_stack.push(String.valueOf(token));
