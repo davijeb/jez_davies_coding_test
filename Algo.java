@@ -4,16 +4,25 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 
+/**
+ * Java solution to the simple integer arithmetic problem.
+ */
 public class Algo {
 
+    // State the four operators to be supported
     private final MathOperation multiply  = (double a, double b) -> a * b;
     private final MathOperation divide    = (double a, double b) -> a / b;
     private final MathOperation add       = (double a, double b) -> a + b;
     private final MathOperation subtract  = (double a, double b) -> a - b;
 
+    // Maps to hold calculators and precedence
     private final Map<String, MathOperation> ops  = new HashMap();
     private final Map<String, Integer> prec = new HashMap();
 
+    /**
+     * C'tor that adds the math operations to a map
+     * and also adds the operator precedence to a separate map
+     */
     private Algo() {
         ops.put("*", multiply);
         ops.put("/", divide);
@@ -26,36 +35,73 @@ public class Algo {
         prec.put("-", 1);
         prec.put("(", 0);
     }
-
+    // Create two stacks to hold operators and operands
     private final Stack<String> out_stack = new Stack();
     private final Stack<String> ops_stack = new Stack();
 
+    /**
+     * Simple operation interface
+     */
     interface MathOperation {
         double operation(double a, double b);
     }
 
+    /**
+     * Basic test class to check the calculated
+     * vs expected values.
+     */
     static class AlgoTest {
 
         private Algo algo = new Algo();
         private String expression;
         private String expected;
 
+        /**
+         * C'tor to hold the expression and expected result
+         * @param s the comma separated string from the input file
+         */
         public AlgoTest(String s) {
             this.expression = s.split(",")[0];
             this.expected = s.split(",")[1];
         }
 
-        public boolean test() {
-            return algo.algo(this.expression) == Integer.valueOf(this.expected);
+        /**
+         * Simply compare the calculated to the expected
+         * @return test result as a String
+         */
+        public String test() {
+            int calculated = algo.algo(this.expression);
+            boolean result = calculated == Integer.valueOf(this.expected);
+            if (result) {
+                return "PASS";
+            } else {
+                return "FAIL: " + calculated + " != " + expected;
+            }
         }
     }
 
+    private boolean isNumber(String token) {
+        try {
+            Integer.parseInt(token);
+            return true;
+        } catch (NumberFormatException e) {
+            // ignore...
+        }
+        return false;
+    }
+
+    /**
+     * Shunting Yard Algo implementation
+     * (see Python notebook for a description  of this algo)
+     * @param expression the infix expression "1 + 2 * 3"
+     * @return the evaluated calculation.
+     */
     public Integer algo(final String expression) {
-        for(char token : expression.toCharArray()) {
-            if(token == '(') {
+        for(String token : expression.split(" ")) {
+            if(token.equals("(")) {
                 ops_stack.push(String.valueOf(token));
             }
-            else if (Character.isDigit(token)) {
+            else if (isNumber(token)) {
                 out_stack.push(String.valueOf(token));
             }
             else if (ops.keySet().contains(String.valueOf(token))) {
@@ -64,7 +110,7 @@ public class Algo {
                 }
                 ops_stack.push(String.valueOf(token));
             }
-            else if(token == ')') {
+            else if(token.equals(")")) {
                 while(!ops_stack.isEmpty() && !ops_stack.peek().equals("(")) {
                     out_stack.push(ops_stack.pop());
                 }
@@ -75,10 +121,13 @@ public class Algo {
         while(!ops_stack.isEmpty()) {
             out_stack.push(ops_stack.pop());
         }
-
         return evaluate();
     }
 
+    /**
+     * Evaluate the postfix expression
+     * @return the evaluated calculation
+     */
     private Integer evaluate() {
 
         Stack<Double> results = new Stack();
@@ -96,19 +145,8 @@ public class Algo {
         return results.pop().intValue();
     }
 
-    public static void main(String[] args) {
-        Algo algo = new Algo();
-        algo.algo("1 + 3 * ( 4 * 2 ) / ( 99 - 6 )");
-        System.out.println(algo.evaluate());
-
-        //read file into stream, try-with-resources
-        try (Stream<String> stream = Files.lines(Paths.get("input.csv"))) {
-            stream.forEach(s -> new AlgoTest(s).test());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        double x = 1.23;
-
+    public static void main(String[] args) throws Exception {
+        Stream<String> stream = Files.lines(Paths.get("input.csv"));
+        stream.forEach(s -> System.out.println(new AlgoTest(s).test()));
     }
 }
