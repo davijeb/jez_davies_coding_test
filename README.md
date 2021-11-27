@@ -12,19 +12,28 @@ I've written a solution to the problem in both Python and Java.
 Note: There is a test file named input.csv that is used by both solutions.
 The test file is a csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
 
-###Python
+##Python
 ```
-1. Start with arithmetic.ipyng. This notebook walks through my approach to the problem and has the actual code in-line.
+1. Start with arithmetic.ipyng. This notebook walks through my 
+   approach to the problem and has the actual code in-line.
 
-2. Next, the file algo.py is simply the same code described in the notebook in a python file ready for testing.
+2. Next, the file algo.py is simply the same code described in 
+   the notebook in a python file ready for testing.
 
-3. The last notebook arithmetic-tests.ipynb imports the above algo library and executes a series of unit and integration tests.
+3. The last notebook arithmetic-tests.ipynb imports the above 
+   algo library and executes a series of unit and integration tests.
 ```
-###Java
+
+##Java
 ```
 1. Run Algo.java to see a worked example.
 
-For the Java solution I have written a basic test class (AlgoTest) which is included in the Algo class. The reason is that for simplicity I have no dependencies on external libraries, like JUnit, to run the tests. The tests are not as extensive as the Python solution but in the real-world I would have included an actual test-library and would have mirrored the Python tests.
+For the Java solution I have written a basic test class (AlgoTest) 
+which is included in the Algo class. The reason is that for s
+implicity I have no dependencies on external libraries, like 
+JUnit, to run the tests. The tests are not as extensive as the 
+Python solution but in the real-world I would have included an 
+actual test-library and would have mirrored the Python tests.
 ```
 ## Technologies
 ```
@@ -40,5 +49,7 @@ The solution has been tested on a MacBook Air (M1, 2020)
 To run this project, ensure the above language versions are loaded.
 
 Note:
-For the Python solution ideally you should have installed Jupyter (pip install jupyter) to use the interactive notebook (jupyter notebook).
+For the Python solution ideally you should have installed 
+Jupyter (pip install jupyter) to use the interactive 
+notebook (jupyter notebook).
 ``` 
