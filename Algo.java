@@ -11,7 +11,7 @@ public class Algo {
     // Test file name
     private final static String TEST_FILE = "input.csv";
 
-    // Parenthesis local variable definisions
+    // Parenthesis local variable definitions
     private final String LH = "(";
     private final String RH = ")";
 
@@ -88,8 +88,8 @@ public class Algo {
 
     /**
      * There are better libraries like Apache Commons
-     * to use for this check to avoid library dependecy
-     * I've implemented a rudimentary methid
+     * to use for this check to avoid library dependency
+     * I've implemented a rudimentary method
      * @param token the string value
      * @return true if it's an integer value
      */
