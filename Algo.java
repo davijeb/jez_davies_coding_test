@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -92,7 +91,7 @@ public class Algo {
 
     /**
      * Shunting Yard Algo implementation
-     * (see Python notebook for a description  of this algo)
+     * (see Python notebook for a description of this algo)
      * @param expression the infix expression "1 + 2 * 3"
      * @return the evaluated calculation.
      */
@@ -145,8 +144,12 @@ public class Algo {
         return results.pop().intValue();
     }
 
+    /**
+     * Run tests against each line in the input test file and output results as pass or fail.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
-        Stream<String> stream = Files.lines(Paths.get("input.csv"));
-        stream.forEach(s -> System.out.println(new AlgoTest(s).test()));
+        Files.lines(Paths.get("input.csv")).forEach(s -> System.out.println(new AlgoTest(s).test()));
     }
 }
