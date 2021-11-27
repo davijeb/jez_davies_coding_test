@@ -53,7 +53,7 @@ def algo(expression, debug = False):
             
         # If it's a right bracket
         elif token == RH:
-            # While there's not a left bracket at the top of the stack:
+            # While there's not a left bracket at the top of the stack
             while len(ops_stack) > 0 and ops_stack[-1] != LH:
                 # Pop operators from the operator stack onto the output stack
                 out_stack.append(ops_stack.pop())
