@@ -32,7 +32,7 @@ Project runtime is:
 * Python 3.9.6
 * Java OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode, sharing)
 
-The solution hs been tested on a MacBook Air (M1, 2020)
+The solution has been tested on a MacBook Air (M1, 2020)
 	
 ## Setup
 To run this project, ensure the above language versions are loaded.
