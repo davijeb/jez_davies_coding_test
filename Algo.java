@@ -1,13 +1,15 @@
-package com.arithmetic;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Algo {
 
-    private final MathOperation multiply  = (int a, int b) -> a * b;
-    private final MathOperation divide    = (int a, int b) -> a / b;
-    private final MathOperation add       = (int a, int b) -> a + b;
-    private final MathOperation subtract  = (int a, int b) -> a - b;
+    private final MathOperation multiply  = (double a, double b) -> a * b;
+    private final MathOperation divide    = (double a, double b) -> a / b;
+    private final MathOperation add       = (double a, double b) -> a + b;
+    private final MathOperation subtract  = (double a, double b) -> a - b;
 
     private final Map<String, MathOperation> ops  = new HashMap();
     private final Map<String, Integer> prec = new HashMap();
@@ -29,10 +31,26 @@ public class Algo {
     private final Stack<String> ops_stack = new Stack();
 
     interface MathOperation {
-        int operation(int a, int b);
+        double operation(double a, double b);
     }
 
-    public void algo(String expression) {
+    static class AlgoTest {
+
+        private Algo algo = new Algo();
+        private String expression;
+        private String expected;
+
+        public AlgoTest(String s) {
+            this.expression = s.split(",")[0];
+            this.expected = s.split(",")[1];
+        }
+
+        public boolean test() {
+            return algo.algo(this.expression) == Integer.valueOf(this.expected);
+        }
+    }
+
+    public Integer algo(final String expression) {
         for(char token : expression.toCharArray()) {
             if(token == '(') {
                 ops_stack.push(String.valueOf(token));
@@ -57,31 +75,40 @@ public class Algo {
         while(!ops_stack.isEmpty()) {
             out_stack.push(ops_stack.pop());
         }
-        // 1 3 4 2 * * 1 5 - / +
+
+        return evaluate();
     }
 
-    public Object evaluate() {
+    private Integer evaluate() {
 
-        Stack<Integer> results = new Stack();
+        Stack<Double> results = new Stack();
         for(String token: this.out_stack) {
-            System.out.println(token);
             if (ops.keySet().contains(String.valueOf(token))) {
-                Integer arg2 = results.pop();
-                Integer arg1 = results.pop();
-                System.out.println(token + " " + arg1 + " " + arg2);
-                Integer result = ops.get(token).operation(arg1, arg2);
+                double arg2 = results.pop();
+                double arg1 = results.pop();
+                Double result = ops.get(token).operation(arg1, arg2);
                 results.push(result);
             }
             else {
-                results.push(Integer.valueOf(token));
+                results.push(Double.valueOf(token));
             }
         }
-        return results.pop();
+        return results.pop().intValue();
     }
 
     public static void main(String[] args) {
         Algo algo = new Algo();
         algo.algo("1 + 3 * ( 4 * 2 ) / ( 99 - 6 )");
         System.out.println(algo.evaluate());
+
+        //read file into stream, try-with-resources
+        try (Stream<String> stream = Files.lines(Paths.get("input.csv"))) {
+            stream.forEach(s -> new AlgoTest(s).test());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        double x = 1.23;
+
     }
 }

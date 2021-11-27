@@ -9,8 +9,8 @@
 
 I've written a solution to the problem in both Python and Java.
 
-Note: There is a test file named input.csv that is used by both languages.
-The file is a headerless csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
+Note: There is a test file named input.csv that is used by both solutions.
+The test file is a csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
 
 Python
 
@@ -24,14 +24,15 @@ Java
 
 1. Run Algo.java to see a worked example.
 
-For the Java solution I have not included any tests as it would hav required loading external libraries (JUnit) and the tests in the Python implementation were extensive and it would have been a copy using like-for-like JUnit tests.
+For the Java solution I have written a basic test class (AlgoTest) which is included in the Algo class. The reason is that for simplicity I have no dependencies on external libraries, like JUnit, to run the tests. The tests are not as extensive as the Python solution but in the real-world I would have included an actual test-library and would have mirrored the Python tests.
 	
 ## Technologies
+
 Project runtime is:
 * Python 3.9.6
 * Java OpenJDK 64-Bit Server VM (build 17.0.1+12-39, mixed mode, sharing)
 
-The solution hs been tested on an Apple Mac Air M1
+The solution hs been tested on a MacBook Air (M1, 2020)
 	
 ## Setup
 To run this project, ensure the above language versions are loaded.
