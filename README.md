@@ -12,7 +12,7 @@ I've written a solution to the problem in both Python and Java.
 Note: There is a test file named input.csv that is used by both solutions.
 The test file is a csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
 
-##Python
+## Python
 ```
 1. Start with arithmetic.ipyng. This notebook walks through my 
    approach to the problem and has the actual code in-line.
@@ -24,7 +24,7 @@ The test file is a csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
    algo library and executes a series of unit and integration tests.
 ```
 
-##Java
+## Java
 ```
 1. Run Algo.java to see a worked example.
 
