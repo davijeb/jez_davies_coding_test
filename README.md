@@ -29,11 +29,11 @@ The test file is a csv with two columns: EXPRESSION, EXPECTED_RESULT (integer)
 1. Run Algo.java to see a worked example.
 
 For the Java solution I have written a basic test class (AlgoTest) 
-which is included in the Algo class. The reason is that for s
-implicity I have no dependencies on external libraries, like 
-JUnit, to run the tests. The tests are not as extensive as the 
-Python solution but in the real-world I would have included an 
-actual test-library and would have mirrored the Python tests.
+which is included in the Algo class. The reason is that for simplicity 
+I have no dependencies on external libraries, like JUnit, to run the 
+tests. The tests are not as extensive as the Python solution but 
+in the real-world I would have included an actual test-library 
+and would have mirrored the Python tests.
 ```
 ## Technologies
 ```
