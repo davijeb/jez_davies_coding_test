@@ -1,10 +1,13 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Stream;
 
 /**
- * Java solution to the simple integer arithmetic problem.
+ * Java solution to the simple integer arithmetic problem
+ * which asks for a solution to <code>"1 + 2 * 3</code>
+ * that yields the integer value 7.
+ *
+ * @author jez.davies
  */
 public class Algo {
 
@@ -48,7 +51,8 @@ public class Algo {
         prec.put("-", 1);
         prec.put("(", 0);
     }
-    // Create two stacks to hold operators and operands
+
+    // Create two stacks to hold output ad operators
     private final Stack<String> out_stack = new Stack();
     private final Stack<String> ops_stack = new Stack();
 
@@ -65,6 +69,7 @@ public class Algo {
         /**
          * C'tor to hold the expression and expected result
          * @param s the comma separated string from the input file
+         * @implNote assume the file format is fixed for the purposes of this test
          */
         public AlgoTest(String s) {
             this.expression = s.split(",")[0];
