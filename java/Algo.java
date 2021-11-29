@@ -193,6 +193,7 @@ public class Algo {
                 results.push(Double.valueOf(token));
             }
         }
+        // The test asks for the results to be of type integer
         return results.pop().intValue();
     }
 
